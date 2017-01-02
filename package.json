@@ -1,0 +1,21 @@
+{
+  "name": "mame2json",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "mock-spawn": "^0.2.6",
+    "mockery": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "tape __tests__/*.spec.js | tap-spec",
+    "watch": "nodemon -q -x 'npm test'"
+  },
+  "dependencies": {
+    "cross-spawn": "^5.0.1",
+    "mockery": "^2.0.0"
+  }
+}
