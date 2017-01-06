@@ -113,7 +113,7 @@ describe('mame2json', () => {
 
     });
 
-    it.only('listxml without game return error', () => {
+    it('listxml without game return error', () => {
 
         const game = '';
 
