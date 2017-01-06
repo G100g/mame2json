@@ -4,11 +4,14 @@ const parse = require('xml2js').parseString;
 var inspect = require('util').inspect;
 
 module.exports = {
+    binary(binary) {
+        mame.setBinary(binary);
+    },
     version: function() {
 
         return mame.getVersion()
                         .then((result) => {
-                            if (result.code === 1) {
+                            if (result.code === 0) {
 
                                 const re = /^MAME\s{1}v([0-9\.]+)/gi;
                                 let match;
@@ -47,7 +50,7 @@ module.exports = {
                 .listFullResult()
                 .then((result) => {
                     
-                    if (result.code === 1) {
+                    if (result.code === 0) {
 
                         const re = /([a-zA-Z_0-9]+)\s+(".*")/gi;
                         let match;
@@ -98,7 +101,7 @@ module.exports = {
                             } 
                         };
 
-                        if (result.code === 1) {
+                        if (result.code === 0) {
                             const obj = parse(result.data, (err, resultObj) => {
 
                                 if (err) {

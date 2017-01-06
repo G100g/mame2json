@@ -1,7 +1,7 @@
 'use strict';
 const mame2json = require('./');
 
-console.log("PLayground");
+console.log("Playground");
 
 mame2json.listFull()
     .then((result) => {

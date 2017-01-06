@@ -19,7 +19,7 @@ describe('MAME wrapper', () => {
 
     beforeEach(function() {
         spawn = mockSpawn(false);
-        returnSpawFunction = spawn.simple(0 /* exit code */, '' /* stdout */, '{ [Error: spawn ENOTDIR] code: \'ENOTDIR\', errno: \'ENOTDIR\', syscall: \'spawn\' }');
+        returnSpawFunction = spawn.simple(1 /* exit code */, '' /* stdout */, '{ [Error: spawn ENOTDIR] code: \'ENOTDIR\', errno: \'ENOTDIR\', syscall: \'spawn\' }');
         mockery.enable({ useCleanCache: true });        
         mockery.registerMock('child_process', { spawn: spawn });
         mockery.registerAllowable('../libs/mame', true);
@@ -62,7 +62,7 @@ describe('MAME wrapper', () => {
     it('Get version from MAME bin', function() {
 
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockVersion /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockVersion /* stdout */));
 
         mame.setBinary('mame');
 
@@ -80,7 +80,7 @@ describe('MAME wrapper', () => {
     it('Get listFull result from MAME bin', function() {
 
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockListFull /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockListFull /* stdout */));
 
         mame.setBinary('mame');
 
@@ -100,7 +100,7 @@ describe('MAME wrapper', () => {
         const game = 'wboy';
 
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockListXmlSingle /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockListXmlSingle /* stdout */));
 
         const expected = mockListXmlSingle;
 

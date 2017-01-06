@@ -18,7 +18,7 @@ describe('mame2json', () => {
 
     beforeEach(function() {
         spawn = mockSpawn(false);
-        returnSpawFunction = spawn.simple(0 /* exit code */, '' /* stdout */, '{ [Error: spawn ENOTDIR] code: \'ENOTDIR\', errno: \'ENOTDIR\', syscall: \'spawn\' }');
+        returnSpawFunction = spawn.simple(1 /* exit code */, '' /* stdout */, '{ [Error: spawn ENOTDIR] code: \'ENOTDIR\', errno: \'ENOTDIR\', syscall: \'spawn\' }');
         mockery.enable({ useCleanCache: true });        
         mockery.registerMock('child_process', { spawn: spawn });
         mockery.registerAllowable('../', true);
@@ -35,7 +35,7 @@ describe('mame2json', () => {
     it('Get version', function() {
     
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockVersion /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockVersion /* stdout */));
 
         const expected = '0.180';
 
@@ -51,7 +51,7 @@ describe('mame2json', () => {
     it.skip('Get version without output', function() {
     
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockVersion /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockVersion /* stdout */));
 
         const expected = '0.180';
 
@@ -67,7 +67,7 @@ describe('mame2json', () => {
     it('Get object from listFull', function() {
 
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockListFull /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockListFull /* stdout */));
 
         const expected = {
             'as_mp2': '"Mission Possible 2 (Lowen, V114)"',
@@ -90,7 +90,7 @@ describe('mame2json', () => {
         const game = 'wboy';
 
         // Mock MAME binary response
-        spawn.setDefault(spawn.simple(1 /* exit code */, mockListXmlSingle /* stdout */));
+        spawn.setDefault(spawn.simple(0 /* exit code */, mockListXmlSingle /* stdout */));
  
         const expected = {
             'wboy': {

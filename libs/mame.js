@@ -17,9 +17,7 @@ function createSpawn(command, args) {
         let dataResult = '';
         let errorMessage = '';
         try {
-            proc = spawn(command, args, {
-                stdio: 'inherit'
-            });
+            proc = spawn(command, args);
         } catch (e) {
             reject(e);
         }
@@ -38,7 +36,7 @@ function createSpawn(command, args) {
 
         proc.on('exit', function (code) {
 
-            if(code === 0) {
+            if(code > 0) {
 
                 if(errorMessage.indexOf('ENOTDIR') !== -1) {
                     reject(C.NOT_MAME_BIN);
