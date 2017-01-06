@@ -7,6 +7,7 @@ const mockery = require('mockery');
 
 const mockListFull = require('./__mocks__/mame').listFullResult();
 const mockVersion = require('./__mocks__/mame').versionResult();
+const mockListXmlSingle = require('./__mocks__/mame').listXmlResult('wboy');
 
 const C = require('../libs/constants');
 let mame2json;
@@ -76,6 +77,34 @@ describe('mame2json', () => {
         };
 
         return mame2json.listFull().then((result) => {
+            assert.deepEqual(result, expected, 'Got listfull object');    
+        })
+        .catch((e) => {
+            assert.fail(e, 'Error getting listfull')
+        });
+
+    });
+
+    it.only('Get object from listxml of a single game', () => {
+
+        const game = 'wboy';
+
+        // Mock MAME binary response
+        spawn.setDefault(spawn.simple(1 /* exit code */, mockListXmlSingle /* stdout */));
+ 
+        const expected = {
+            'wboy': {
+                'description': 'Wonder Boy (set 1, 315-5177)',
+                'year': '1986',
+                'manufacturer': 'Escape (Sega license)',
+                'driver': {
+                    'status': 'good',
+                    'emulation': 'good',
+                } 
+            }
+        };
+
+        return mame2json.listXml(game).then((result) => {
             assert.deepEqual(result, expected, 'Got listfull object');    
         })
         .catch((e) => {

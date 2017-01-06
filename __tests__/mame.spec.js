@@ -95,7 +95,7 @@ describe('MAME wrapper', () => {
 
     });
 
-    it.only('Get listxml output of a single game', () => {
+    it('Get listxml output of a single game', () => {
 
         const game = 'wboy';
 

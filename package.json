@@ -15,6 +15,8 @@
   "dependencies": {
     "cross-spawn": "^5.0.1",
     "mocha": "^3.2.0",
-    "mockery": "^2.0.0"
+    "mockery": "^2.0.0",
+    "xml-parser": "^1.2.1",
+    "xml2js": "^0.4.17"
   }
 }
