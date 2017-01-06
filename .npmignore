@@ -1,0 +1,5 @@
+__tests__
+.travis.yml
+playground.js
+*.lock
+.release.json
