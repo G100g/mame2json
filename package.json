@@ -8,7 +8,8 @@
     "url": "http://g100g.net"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "libs"
   ],
   "main": "index.js",
   "license": "MIT",
