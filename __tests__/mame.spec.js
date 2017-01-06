@@ -8,6 +8,7 @@ const mockery = require('mockery');
 
 const mockListFull = require('./__mocks__/mame').listFullResult();
 const mockVersion = require('./__mocks__/mame').versionResult();
+const mockListXmlSingle = require('./__mocks__/mame').listXmlResult('wboy');
 
 const C = require('../libs/constants');
 let mame;
@@ -87,6 +88,24 @@ describe('MAME wrapper', () => {
 
         return mame.listFullResult().then((proc) => {
             assert.equal(proc.data, expected, '-listfull output displayed');    
+        })
+        .catch((e) => {
+            assert.fail(e)
+        });
+
+    });
+
+    it.only('Get listxml output of a single game', () => {
+
+        const game = 'wboy';
+
+        // Mock MAME binary response
+        spawn.setDefault(spawn.simple(1 /* exit code */, mockListXmlSingle /* stdout */));
+
+        const expected = mockListXmlSingle;
+
+        return mame.listXmlResult(game).then((proc) => {
+            assert.equal(proc.data, expected, '-listxml for ' + game + ' output displayed');    
         })
         .catch((e) => {
             assert.fail(e)

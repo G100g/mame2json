@@ -64,5 +64,8 @@ module.exports = {
     },
     listFullResult() {
         return createSpawn(mameBinaryPath, ['-listfull']);
+    },
+    listXmlResult(game) {
+        return createSpawn(mameBinaryPath, ['-listxml', game]);
     }
 }
