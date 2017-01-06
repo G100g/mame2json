@@ -1,6 +1,6 @@
 {
   "name": "mame2json",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple wrapper for MAME bin output",
   "author": {
     "name": "G100g",
