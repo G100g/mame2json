@@ -1,4 +1,5 @@
 # mame2json
+[![Build Status](https://travis-ci.org/G100g/mame2json.svg?branch=master)](https://travis-ci.org/G100g/mame2json)
 
 This project aim to create a wrapper around MAME bin
 
