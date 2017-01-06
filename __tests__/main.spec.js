@@ -85,7 +85,7 @@ describe('mame2json', () => {
 
     });
 
-    it.only('Get object from listxml of a single game', () => {
+    it('Get object from listxml of a single game', () => {
 
         const game = 'wboy';
 
@@ -109,6 +109,22 @@ describe('mame2json', () => {
         })
         .catch((e) => {
             assert.fail(e, 'Error getting listfull')
+        });
+
+    });
+
+    it.only('listxml without game return error', () => {
+
+        const game = '';
+
+        // Mock MAME binary response
+        spawn.setDefault(spawn.simple(1 /* exit code */, '' /* stdout */));
+ 
+        return mame2json.listXml(game).then((result) => {
+            assert.fail(e, 'listxml without gamename should return an error')
+        })
+        .catch((e) => {
+            assert.equal(e, false);
         });
 
     });

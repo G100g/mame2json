@@ -77,6 +77,11 @@ module.exports = {
 
     },
     listXml: function(game) {
+
+        if (!game) {
+            return Promise.reject(false);
+        }
+
         return mame
                 .listXmlResult(game)
                 .then((result) => {
