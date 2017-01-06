@@ -9,5 +9,9 @@ module.exports = {
     listFullResult: function() {
         const result = getFilesContent(path.join(__dirname, 'listfull.txt'));
         return result;
+    },
+    versionResult: function() {
+        const result = getFilesContent(path.join(__dirname, 'version.txt'));
+        return result;
     }
 }

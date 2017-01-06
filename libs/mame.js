@@ -1,5 +1,8 @@
 'use strict';
 const spawn = require('cross-spawn');
+const C = require('./constants');
+
+let mameBinaryPath = 'mame';
 
 /**
  * 
@@ -12,6 +15,7 @@ function createSpawn(command, args) {
     return new Promise((resolve, reject) => {
         let proc = null;
         let dataResult = '';
+        let errorMessage = '';
         try {
             proc = spawn(command, args, {
                 stdio: 'inherit'
@@ -25,7 +29,7 @@ function createSpawn(command, args) {
             dataResult += d;
         });
         proc.stderr.on('data', function (d) {
-            console.error(d);
+            errorMessage += d;
         });
 
         proc.on('error', function (e) {
@@ -33,6 +37,15 @@ function createSpawn(command, args) {
         });
 
         proc.on('exit', function (code) {
+
+            if(code === 0) {
+
+                if(errorMessage.indexOf('ENOTDIR') !== -1) {
+                    reject(C.NOT_MAME_BIN);
+                } else {
+                    reject('Error');
+                }
+            }
             resolve({
                 code,
                 data: dataResult
@@ -42,9 +55,14 @@ function createSpawn(command, args) {
     });
 }
 
-
 module.exports = {
+    setBinary(binary) {
+        mameBinaryPath = binary;
+    },
+    getVersion() {
+        return createSpawn(mameBinaryPath, ['-?']);
+    },
     listFullResult() {
-        return createSpawn('mame64', ['-listfull']);
+        return createSpawn(mameBinaryPath, ['-listfull']);
     }
 }

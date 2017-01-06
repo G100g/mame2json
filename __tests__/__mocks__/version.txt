@@ -1,0 +1,15 @@
+MAME v0.180 (unknown)
+Copyright Nicola Salmoria and the MAME team
+
+This software reproduces, more or less faithfully, the behaviour of a wide range
+of machines. But hardware is useless without software, so images of the ROMs and
+other media which run on that hardware are also required.
+
+Usage:  mame64 [machine] [media] [software] [options]
+
+        mame64 -showusage    for a brief list of options
+        mame64 -showconfig   for a list of configuration options
+        mame64 -listmedia    for a full list of supported media
+        mame64 -createconfig to create a mame.ini
+
+For usage instructions, please consult the files config.txt and windows.txt.
